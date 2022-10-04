@@ -12,7 +12,7 @@ export const searchMovies = async searchQuery => {
 
   try {
     const res = await axios.get(url, { params: urlParams });
-    return res.data;
+    return res.data.results;
   } catch (error) {
     console.log(error);
   }
@@ -26,7 +26,7 @@ export const getTrends = async () => {
 
   try {
     const res = await axios.get(url, { params: urlParams });
-    return res.data;
+    return res.data.results;
   } catch (error) {
     console.log(error);
   }
@@ -40,7 +40,7 @@ export const getMovieDetails = async movieId => {
 
   try {
     const res = await axios.get(url, { params: urlParams });
-    return res.data;
+    return res.data.results;
   } catch (error) {
     console.log(error);
   }
@@ -54,7 +54,7 @@ export const getMovieCast = async movieId => {
 
   try {
     const res = await axios.get(url, { params: urlParams });
-    return res.data;
+    return res.data.results;
   } catch (error) {
     console.log(error);
   }
@@ -68,7 +68,7 @@ export const getMovieReviews = async movieId => {
 
   try {
     const res = await axios.get(url, { params: urlParams });
-    return res.data;
+    return res.data.results;
   } catch (error) {
     console.log(error);
   }
