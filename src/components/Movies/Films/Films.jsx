@@ -1,19 +1,20 @@
-import { FilmItem } from 'components/FilmItem/FilmItem';
+import FilmItem from '../FilmItem/FilmItem';
 import PropTypes from 'prop-types';
 
-export const FilmList = ({list}) => {
+ const Films = ({list}) => {
     
     return (
         <ul>
             {list.length > 0 &&
                 list.map(({ id, title }) => {
-                return <FilmItem key={id} title={title} />
+                return <FilmItem key={id} id={id} title={title} />
             })}
         </ul>
     )
 }
+export default Films
 
-FilmList.propTypes = {
+Films.propTypes = {
     list: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,

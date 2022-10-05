@@ -1,22 +1,12 @@
-import { useState, useEffect } from "react"
-import { getTrends } from "components/services/filmApi"
+import Home from "components/Home/Home"
+import { Outlet } from "react-router-dom"
 
-export const Home = () => {
-   const [trends, setTrends] = useState([])
-    useEffect(() => {
-        getTrends().then(setTrends)
-    }, []);
-    
-    if (!trends) {
-        return
-    }
-
+const HomePage = () => {
     return (
-        <ul>
-            {trends.map(({id, title}) => {
-                return <li key={id}>{title}</li>
-            })}
-        </ul>
+        <div>
+            <Home />
+            <Outlet/>
+        </div>
     )
-
 }
+export default HomePage

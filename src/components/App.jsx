@@ -1,23 +1,21 @@
-import { Home } from 'pages/Home';
-import { Movies } from 'pages/Movies';
+import HomePage from 'pages/Home';
+import  MovieDetailsPage  from 'pages/MovieDetails';
+import MoviesPage from 'pages/MoviesPage';
 import { Route, Routes, Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import Layout from './Layout/Layout';
 
 export const App = () => {
   return (
     <div>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/movies">Movies</Link>
-      </nav>
-
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:movieId" element />
-        <Route path="*" element />
-      </Routes>
-      <ToastContainer autoClose={3000} />
+      <Route path='/' element={<Layout />}>
+          <Route path='/' element={<HomePage />} />
+          <Route path='movies' element={<MoviesPage />} />
+          <Route path='movies/:movieId' element={<MovieDetailsPage />} />
+      </Route>
+    </Routes>
+    <ToastContainer autoClose={3000} />
     </div>
-  );
+  ) ;
 };

@@ -40,7 +40,7 @@ export const getMovieDetails = async movieId => {
 
   try {
     const res = await axios.get(url, { params: urlParams });
-    return res.data.results;
+    return res.data;
   } catch (error) {
     console.log(error);
   }
