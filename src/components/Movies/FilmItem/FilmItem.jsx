@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+
+
 const FilmItem = ({ id, title }) => {
+  const location = useLocation() 
   return (
     <li>
-      <Link to={`${id}`}>{title}</Link>
+      <Link to={`${id}`} state={{from: location}}>{title}</Link>
       <Outlet />
     </li>
   );

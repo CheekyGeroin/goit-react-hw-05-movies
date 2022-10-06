@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
+  const URL= 'https://image.tmdb.org/t/p/w500'
 
   useEffect(() => {
     getMovieCast(movieId).then(setCast);
@@ -16,7 +17,7 @@ const Cast = () => {
         {cast.map(({ id, name, character, profile_path }) => {
           return (
             <li key={id}>
-              <img src={profile_path} alt={name} />
+              <img src={`${URL}${profile_path}`} alt={name} />
               <p>{name}</p>
               <p>Character: {character}</p>
             </li>

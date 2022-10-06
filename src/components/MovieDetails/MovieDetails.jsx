@@ -1,11 +1,15 @@
 import { getMovieDetails } from 'components/services/filmApi';
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const URL = 'https://image.tmdb.org/t/p/w500'
+  const location = useLocation();
+  const backHrefLink= location.state?.from ?? '/'
+
   useEffect(() => {
     getMovieDetails(movieId).then(setMovie);
   }, [movieId]);
@@ -19,13 +23,13 @@ const MovieDetails = () => {
   return (
     <div>
       <div>
-        <button>
-          <BiArrowBack />
+        <Link to={backHrefLink}>
+        <BiArrowBack />
           Go back
-        </button>
+        </Link>
       </div>
       <div>
-        <img src={poster_path} alt={title} />
+        <img src={`${URL}${poster_path}`} alt={title} />
       </div>
       <div>
         <h1>{title}</h1>

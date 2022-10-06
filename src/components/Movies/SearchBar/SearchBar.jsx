@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-export const SearchBar = ({ onSubmit }) => {
+export const SearchBar = ({ onSubmit, onChange }) => {
   const [searchItem, setSearchItem] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
 
     onSubmit(searchItem);
+    onChange(searchItem);
 
     setSearchItem('');
   };
@@ -26,4 +27,5 @@ export const SearchBar = ({ onSubmit }) => {
 
 SearchBar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  onChange:PropTypes.func.isRequired,
 };
