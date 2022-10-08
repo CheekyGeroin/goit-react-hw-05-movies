@@ -2,6 +2,8 @@ import FilmItem from '../FilmItem/FilmItem';
 import PropTypes from 'prop-types';
 
 const Films = ({ list }) => {
+  
+  
   return (
     <ul>
       {list.length > 0 &&

@@ -7,13 +7,14 @@ import { SearchBar } from 'components/Movies/SearchBar/SearchBar';
 import { searchMovies } from 'components/services/filmApi';
 import {  useSearchParams } from 'react-router-dom';
 import Films from './Films/Films';
+import { useLocalStorage } from 'components/services/useLocalStorage';
 
 const Movies = () => {
   const [filmName, setFilmName] = useState('');
-  const [filmList, setFilmList] = useState([]);
+  const [filmList, setFilmList] = useLocalStorage([], 'films')
   const [searchParam, setSearchParam] = useSearchParams();
   const isFirstRender = useFirstMountState();
-  const foundedFilms = filmList
+  const query = searchParam.get('query') ?? '';
 
   const getFilmName = name => {
     if (name.trim() === '') {
@@ -31,7 +32,10 @@ const Movies = () => {
     if (!isFirstRender) {
       searchMovies(filmName).then(setFilmList);
     }
-  }, [filmName, isFirstRender]);
+
+  }, [filmName, isFirstRender, setFilmList]);
+
+
 
   if (!filmList) {
     return;
@@ -40,7 +44,7 @@ const Movies = () => {
   return (
     <div>
       <SearchBar onSubmit={getFilmName} onChange={updQueryString} />
-      <Films list={foundedFilms} />
+      {query !== '' && (<Films list={filmList} />)}
     </div>
   );
 };
