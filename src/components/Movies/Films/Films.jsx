@@ -1,16 +1,15 @@
 import FilmItem from '../FilmItem/FilmItem';
 import PropTypes from 'prop-types';
+import { List } from './Films.styled';
 
 const Films = ({ list }) => {
-  
-  
   return (
-    <ul>
+    <List>
       {list.length > 0 &&
         list.map(({ id, title }) => {
           return <FilmItem key={id} id={id} title={title} />;
         })}
-    </ul>
+    </List>
   );
 };
 export default Films;

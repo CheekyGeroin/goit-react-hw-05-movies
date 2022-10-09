@@ -5,13 +5,13 @@ import 'react-toastify/dist/ReactToastify.css';
 // import Films from 'components/Movies/Films/Films';
 import { SearchBar } from 'components/Movies/SearchBar/SearchBar';
 import { searchMovies } from 'components/services/filmApi';
-import {  useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import Films from './Films/Films';
 import { useLocalStorage } from 'components/services/useLocalStorage';
 
 const Movies = () => {
   const [filmName, setFilmName] = useState('');
-  const [filmList, setFilmList] = useLocalStorage([], 'films')
+  const [filmList, setFilmList] = useLocalStorage([], 'films');
   const [searchParam, setSearchParam] = useSearchParams();
   const isFirstRender = useFirstMountState();
   const query = searchParam.get('query') ?? '';
@@ -32,10 +32,7 @@ const Movies = () => {
     if (!isFirstRender) {
       searchMovies(filmName).then(setFilmList);
     }
-
   }, [filmName, isFirstRender, setFilmList]);
-
-
 
   if (!filmList) {
     return;
@@ -44,7 +41,7 @@ const Movies = () => {
   return (
     <div>
       <SearchBar onSubmit={getFilmName} onChange={updQueryString} />
-      {query !== '' && (<Films list={filmList} />)}
+      {query !== '' && <Films list={filmList} />}
     </div>
   );
 };

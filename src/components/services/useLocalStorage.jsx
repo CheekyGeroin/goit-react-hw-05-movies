@@ -1,23 +1,22 @@
 import { useState, useEffect } from "react";
 
-const useLocalStorage = (initialValue, key) => { //кастомный хук
+const useLocalStorage = (initialValue, key) => { 
   const getValue = () => {
-    const storage = localStorage.getItem(key);  //достаем с стореджа
+    const storage = localStorage.getItem(key);  
 
-    if (storage) {// проверка на наличие
-      return JSON.parse(storage);  //парс
+    if (storage) {
+      return JSON.parse(storage); 
     }
 
-    return initialValue; //если нет пустой массив
+    return initialValue; 
   };
 
-  const [value, setValue] = useState(getValue); //полученно в муви при запросе
-
-  useEffect(() => { // србатывает при изминении в сторедже
-    localStorage.setItem(key, JSON.stringify(value)); //запись в сторедж по полученому ключу с муви и данные при запросе с муви
+  const [value, setValue] = useState(getValue); 
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(value)); 
   }, [value, key]);
 
-  return [value, setValue];  // функция возращает массив куда будут писаться данные для дальнейшей обработки
+  return [value, setValue]; 
 }
 
 export { useLocalStorage };
